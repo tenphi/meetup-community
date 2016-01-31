@@ -1,0 +1,70 @@
+{
+  "name": "meetup-community",
+  "version": "0.0.1",
+  "description": "Meetup community website based on MEAN stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tenphi/meetup-community.git"
+  },
+  "keywords": [
+    "meetup",
+    "community",
+    "angular",
+    "express",
+    "mongodb",
+    "event"
+  ],
+  "author": "Andrey Yamanov <tenphi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tenphi/meetup-community/issues"
+  },
+  "homepage": "https://github.com/tenphi/meetup-community#readme",
+  "dependencies": {
+    "autoprefixer": "^6.3.1",
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-plugin-syntax-async-functions": "^6.3.13",
+    "babel-plugin-transform-decorators": "^6.4.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-regenerator": "^6.4.4",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "bluebird": "^3.1.1",
+    "bunyan": "^1.5.1",
+    "bunyan-format": "^0.2.1",
+    "commander": "^2.9.0",
+    "css-loader": "^0.23.1",
+    "csswring": "^4.1.1",
+    "exports-loader": "^0.6.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.4.0",
+    "html-minify-loader": "^1.1.0",
+    "html-webpack-plugin": "^1.7.0",
+    "http-proxy": "^1.12.0",
+    "image-webpack-loader": "^1.6.2",
+    "imagemin": "^4.0.0",
+    "less": "^2.5.3",
+    "less-loader": "^2.2.2",
+    "node-libs-browser": "^0.5.3",
+    "nodemon": "^1.8.1",
+    "postcss-loader": "^0.8.0",
+    "raw-loader": "^0.5.1",
+    "stats-webpack-plugin": "^0.3.0",
+    "style-loader": "^0.13.0",
+    "uglify-loader": "^1.3.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.11",
+    "webpack-dev-server": "^1.14.1",
+    "yargs": "^3.32.0"
+  }
+}

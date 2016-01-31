@@ -1,0 +1,24 @@
+<!doctype html>{% var opts = o.htmlWebpackPlugin.options; %}
+<html ng-app="app" block="app" lang="en">
+<head>
+  <title>{%= opts.config.title %}</title>
+  <meta charset="utf-8"/>
+  <meta name="fragment" content="!"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta name="description" content=""/>
+  <meta name="keywords" content=""/>
+  <link href="/icon.png" type="image/png" rel="shortcut icon">
+  <script>
+    var CONFIG = {%# JSON.stringify(opts.config) %}
+  </script>
+</head>
+<body>
+<base href="/">
+
+<div class="app-container">
+  <div ui-view autoscroll="true"></div>
+</div>
+
+</body>
+</html>
