@@ -1,7 +1,10 @@
 import Promise from 'bluebird';
 import Webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import webpackConfigGenerator from './webpack-config-generator.js';
 import BundlerLogger from './logger';
+import request from 'request';
+import httpProxy from 'http-proxy';
 
 export default class Bundler {
   constructor({ Logger, config, appConfig, publicAppConfig, port } = {}) {
@@ -32,10 +35,10 @@ export default class Bundler {
   }
 
   /* TODO: serve() */
-  serve() {
+  serve(appServer) {
     let { log } = this;
 
-    return new Promise( (resolve, reject) => {
+    return (new Promise( (resolve, reject) => {
       this.server = new WebpackDevServer(this.compiler, {
         // We need to tell Webpack to serve our bundled application
         // from the assets path when proxying.
@@ -61,9 +64,49 @@ export default class Bundler {
           return reject(err);
         }
 
-        log.info('development server running on port ' + this.port);
+        log.info('Development server running on port ' + this.port);
         resolve(this.server);
       });
+    })).then( () => {
+      if (appServer) {
+        return this.bindServer(appServer);
+      }
     });
+  }
+
+  bindServer(server) {
+    let proxy = httpProxy.createProxyServer();
+
+    proxy.on('error', e => {
+      log.error('Could not connect to proxy, please try again...');
+    });
+
+    server.instance.all(
+      ['/assets/*', '*.hot-update.json'],
+      (req, res) => {
+        proxy.web(req, res, {
+          target: `http://localhost:${this.port}`
+        });
+      }
+    );
+
+    server.bindStatic();
+    server.bindRoutes();
+
+    server.instance.all('/*', (req, res) => {
+      request(
+        `http://localhost:${this.port}/assets/index.html`,
+        (error, response, body) => {
+          if (!error && response.statusCode == 200) {
+            res.send(body);
+          } else {
+            res.end();
+          }
+        }
+      );
+    });
+
+
+    return server.run();
   }
 };

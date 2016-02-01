@@ -5,13 +5,14 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let autoprefixer = require('autoprefixer');
 let csswring = require('csswring');
 let path = require('path');
-let assetsPath = path.resolve('.', 'public', 'assets');
-let mainEntryPath = path.resolve('.', 'frontend', 'app.js');
-let indexTemplate = path.resolve('.', 'frontend/index.html');
 
 export default function(appConfig, appPublicConfig = {}) {
-  let isProd = appConfig.isProduction;
-  let config = {
+  let assetsPath = path.resolve(appConfig.paths.assets);
+  let mainEntryPath = path.resolve(appConfig.paths.frontend, 'app.js');
+  let indexTemplate = path.resolve(appConfig.paths.frontend, 'index.html');
+  let isProd = appConfig.env === 'production';
+
+  return {
     devtool: isProd ? 'source-map' : 'eval',
     entry: isProd ? mainEntryPath : [
       'webpack/hot/dev-server',
@@ -81,6 +82,4 @@ export default function(appConfig, appPublicConfig = {}) {
       })
     ]
   };
-
-  return config;
 };

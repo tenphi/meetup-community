@@ -1,20 +1,25 @@
 import env from './bundler/env';
 
-let ssl = env.get('ssl') || false;
-let host = env.get('host') || (env.isProduction ? 'example.com' : 'localhost');
-let port = env.get('port') || (env.isProduction ? 8080 : 3000);
+export default class Config {
+  constructor(mode, isPublic) {
+    let ssl = env.get('ssl') || false;
+    let host = env.get('host') || (mode === 'production' ? 'example.com' : 'localhost');
+    let port = env.get('port') || (mode === 'production' ? 8080 : 3000);
 
-let server = {
-  env: env.isProduction ? 'production' : 'development',
-  host,
-  port,
-  ssl,
-  url: 'http' + (ssl ? 's' : '') + '://' + host + (env.isProduction ? '' : ':' + port) + '/'
+    this.env = mode;
+    this.host = host;
+    this.port = port;
+    this.ssl = ssl;
+    this.url = `http${(ssl ? 's' : '')}://${host}${(mode === 'production' ? '' : ':' + port)}/`;
+
+    if (!isPublic) {
+      this.paths = {
+        backend: './backend',
+        frontend: './frontend',
+        universal: './unversal',
+        public: './public',
+        assets: './public/assets'
+      };
+    }
+  }
 };
-
-let publicConfig = {};
-
-['env', 'host', 'port', 'ssl', 'url'].forEach( key => publicConfig[key] = server[key] );
-
-export { publicConfig };
-export default server;
