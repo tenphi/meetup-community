@@ -25,6 +25,12 @@
   },
   "homepage": "https://github.com/tenphi/meetup-community#readme",
   "dependencies": {
+    "@tenphi/express-api-generator": "0.0.3",
+    "angular": "^1.4.9",
+    "angular-animate": "^1.4.9",
+    "angular-bem": "^1.0.0-alpha.1",
+    "angular-decorators": "^1.2.0",
+    "angular-ui-router": "^0.2.17",
     "autoprefixer": "^6.3.1",
     "babel": "^6.3.26",
     "babel-cli": "^6.4.0",
