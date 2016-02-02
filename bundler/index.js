@@ -16,8 +16,6 @@ export default class Bundler {
     this.port = port || 3001;
     this.compiler = Webpack(this.config);
 
-    this.log.info('Webpack instance created');
-
     this.compiler.plugin('compile', () => {
       this.log.info('Bundling started...');
       bundleStart = Date.now();
@@ -90,8 +88,7 @@ export default class Bundler {
       }
     );
 
-    server.bindStatic();
-    server.bindRoutes();
+    server.routes();
 
     server.instance.all('/*', (req, res) => {
       request(

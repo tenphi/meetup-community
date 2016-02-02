@@ -12,19 +12,16 @@ export default class Server {
 
     log = new Logger('server');
 
-    instance.use(require('cookie-parser')(config.salt));
     instance.use(require('body-parser').json());
+    instance.use(require('cookie-parser')(config.salt));
+
   }
 
-  bindStatic() {
+  routes() {
     this.instance.use(express.static(this.config.paths.public));
   }
 
-  bindRoutes() {
-
-  }
-
-  bindFallback() {
+  fallback() {
     this.instance.get('/*', (req, res) => {
       res.sendFile(path.join(this.config.paths.assets, 'index.html'));
     });
