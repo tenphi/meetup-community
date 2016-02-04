@@ -6,7 +6,7 @@ let autoprefixer = require('autoprefixer');
 let csswring = require('csswring');
 let path = require('path');
 
-export default function(appConfig, appPublicConfig = {}) {
+export default function(appConfig, publicAppConfig = {}) {
   let assetsPath = path.resolve(appConfig.paths.assets);
   let mainEntryPath = path.resolve(appConfig.paths.frontend, 'app.js');
   let indexTemplate = path.resolve(appConfig.paths.frontend, 'index.html');
@@ -78,7 +78,7 @@ export default function(appConfig, appPublicConfig = {}) {
         filename: 'index.html',
         inject: true,
         template: indexTemplate,
-        config: appPublicConfig
+        config: publicAppConfig
       })
     ]
   };

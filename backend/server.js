@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import Logger from './logger';
 import fs from 'fs';
+import ApiGenerator from './vendor/express-api-generator';
+import EventsCtrl from './controllers/events.js';
 
 let log;
 
@@ -19,6 +21,10 @@ export default class Server {
 
   routes() {
     this.instance.use(express.static(this.config.paths.public));
+
+    let api = new ApiGenerator([EventsCtrl], { Logger });
+
+    api.bind(this.instance);
   }
 
   fallback() {

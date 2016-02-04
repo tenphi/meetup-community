@@ -4,9 +4,12 @@ import Config from './config.default';
 import Server from './backend/server';
 import Logger from './backend/logger';
 
+import ApiGenerator from './backend/vendor/express-api-generator';
+import EventsCtrl from './backend/controllers/events';
+
 let log = new Logger('main');
 let argv = yargs.argv;
-let bundler, config, publicConfig, server;
+let bundler, config, publicConfig, server, api;
 
 switch(argv._[0]) {
   case 'build':
@@ -21,6 +24,8 @@ switch(argv._[0]) {
   case 'serve':
     config = new Config('development');
     publicConfig = new Config('development', true);
+    api = new ApiGenerator([EventsCtrl], { Logger });
+    publicConfig.api = api.routes;
     bundler = new Bundler({
       appConfig: config,
       publicAppConfig: publicConfig
@@ -45,6 +50,8 @@ switch(argv._[0]) {
   case 'rundev':
     config = new Config('development');
     publicConfig = new Config('development', true);
+    api = new ApiGenerator([EventsCtrl], { Logger });
+    publicConfig.api = api.routes;
     bundler = new Bundler({
       appConfig: config,
       publicAppConfig: publicConfig
