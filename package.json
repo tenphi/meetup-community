@@ -75,5 +75,7 @@
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1",
     "yargs": "^3.32.0"
-  }
+  },
+  "engines" : { "node" : ">=5.5.0" }
+
 }
