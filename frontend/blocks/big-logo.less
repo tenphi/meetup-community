@@ -1,0 +1,15 @@
+@import "../variables";
+
+.big-logo {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url(../images/logo.png);
+  background-color: @mainColor;
+  width: 196px;
+  height: 196px;
+
+  @media @small {
+    width: 64px;
+  }
+}

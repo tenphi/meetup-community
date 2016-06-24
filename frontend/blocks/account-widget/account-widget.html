@@ -1,0 +1,11 @@
+<div block="account-widget" mod="open" ng-if="$ctrl.profile.logged">
+  <div elem="username" ng-bind="::'@' + $ctrl.profile.username"></div>
+  <div elem="logo-container">
+    <div elem="logo" ng-style="{ backgroundImage: 'url(' + $ctrl.getAvatarUrl() + ')' }">
+
+    </div>
+  </div>
+  <div elem="menu">
+    <div elem="menu-item" ng-click="$ctrl.logout()">SIGN OUT</div>
+  </div>
+</div>

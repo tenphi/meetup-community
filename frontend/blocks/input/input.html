@@ -1,0 +1,5 @@
+<div block="input">
+  <label elem="label" for="{{::$ctrl.id}}" ng-bind="::$ctrl.label"></label>
+  <input elem="value" ng-model="$ctrl.model" id="{{::$ctrl.id}}" name="{{::$ctrl.id}}" type="{{::$ctrl.type}}" ng-value="$ctrl.value" ng-required="$ctrl.required" ng-disabled="$ctrl.disabled" />
+  <div elem="error" ng-bind="$ctrl.error"></div>
+</div>

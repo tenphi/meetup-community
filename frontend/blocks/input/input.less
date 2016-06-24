@@ -1,0 +1,20 @@
+@import "../../variables";
+@import "../field";
+
+.input {
+  .field;
+
+  margin-bottom: @margin;
+
+  &__value {
+    width: 100%;
+    border-radius: @padding / 2;
+    border: 1px solid @grey-400;
+    padding: 0 @padding;
+    line-height: 32px;
+
+    &:disabled {
+      opacity: .5;
+    }
+  }
+}

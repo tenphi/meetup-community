@@ -1,0 +1,27 @@
+@import "../variables";
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: @margin;
+  background: white;
+  .box-shadow;
+
+  &__container {
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    display: inline-block;
+    font-size: 24px;
+    padding: 0 @padding * 2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+}

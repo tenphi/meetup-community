@@ -1,0 +1,10 @@
+<div block="sign-in-form">
+  <form name="SignInForm" ng-transclude>
+    <ui-input id="email" model="$ctrl.model.email" type="email" label="Email" required="true"></ui-input>
+    <ui-input id="password" model="$ctrl.model.password" type="password" label="Password"></ui-input>
+    <div class="mt+">
+      <ui-btn type="primary" ng-click="$ctrl.login()">Login</ui-btn>
+      <ui-btn type="default" ui-sref="restore-password">Restore Password</ui-btn>
+    </div>
+  </form>
+</div>

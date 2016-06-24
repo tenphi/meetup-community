@@ -1,0 +1,11 @@
+<div block="sign-up-form">
+  <form name="SignUpForm" ng-transclude>
+    <ui-input id="username" model="$ctrl.model.username" label="Username"></ui-input>
+    <ui-input id="email" model="$ctrl.model.email" type="email" label="Email" required="true"></ui-input>
+    <ui-input id="password" model="$ctrl.model.password" type="password" label="Password"></ui-input>
+    <ui-input id="fullname" model="$ctrl.model.fullName" label="Full Name"></ui-input>
+    <div class="mt+">
+      <ui-btn type="primary" ng-click="$ctrl.submit()">Submit</ui-btn>
+    </div>
+  </form>
+</div>
