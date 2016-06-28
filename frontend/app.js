@@ -1,8 +1,6 @@
 require('./app.less');
 require('./blocks/all.less');
 
-window.CONFIG = require('./config.json');
-
 import ng from 'angular';
 import RouterConfig from './router-config';
 import uiRouter from 'angular-ui-router';
@@ -27,6 +25,7 @@ import btnBlock from './blocks/btn/btn';
 import accountWidget from './blocks/account-widget/account-widget';
 
 // services
+import ConfigProvider from './services/config';
 import AuthService from './services/auth';
 import UserService from './services/user';
 
@@ -43,6 +42,7 @@ ng.module('app', [
 ])
   .service('Auth', AuthService)
   .service('User', UserService)
+  .provider('Config', ConfigProvider)
   .component('uiInput', inputBlock)
   .component('uiSignUpForm', signUpFormBlock)
   .component('uiSignInForm', signInFormBlock)
@@ -50,16 +50,16 @@ ng.module('app', [
   .component('uiChangePasswordForm', changePasswordFormBlock)
   .component('uiBtn', btnBlock)
   .component('uiAccountWidget', accountWidget)
-  .config(['APIProvider', '$logProvider', function(APIProvider, $logProvider) {
-    APIProvider.debug(CONFIG.env === 'development');
-    APIProvider.config(CONFIG.api);
+  .config(['APIProvider', '$logProvider', 'ConfigProvider', function(APIProvider, $logProvider, Config) {
+    APIProvider.debug(Config.env === 'development');
+    APIProvider.config(Config.api);
 
-    $logProvider.debugEnabled(CONFIG.env === 'development');
+    $logProvider.debugEnabled(Config.env === 'development');
   }])
 
   .config(RouterConfig)
 
-  .run(['$rootScope', 'User', function($rootScope, User) {
-    $rootScope.$config = CONFIG;
+  .run(['$rootScope', 'User', 'Config', function($rootScope, User, Config) {
+    $rootScope.$config = Config;
     $rootScope.$user = User.profile;
   }]);
