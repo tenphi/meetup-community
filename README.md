@@ -1,1 +1,1 @@
-# meetup-community
+# project boilerplate
