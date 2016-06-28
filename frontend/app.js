@@ -50,10 +50,12 @@ ng.module('app', [
   .component('uiChangePasswordForm', changePasswordFormBlock)
   .component('uiBtn', btnBlock)
   .component('uiAccountWidget', accountWidget)
-  .config(['APIProvider', '$logProvider', 'ConfigProvider', function(APIProvider, $logProvider, Config) {
+  .config(['APIProvider', '$logProvider', 'ConfigProvider', function(APIProvider, $logProvider, ConfigProvider) {
+    let Config = ConfigProvider.$get();
+
     APIProvider.debug(Config.env === 'development');
     APIProvider.config(Config.api);
-
+    
     $logProvider.debugEnabled(Config.env === 'development');
   }])
 
