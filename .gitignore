@@ -35,6 +35,7 @@ test.js
 
 # Config
 config.js
+!frontend/services/config.js
 frontend/config.json
 
 # Custom styles
